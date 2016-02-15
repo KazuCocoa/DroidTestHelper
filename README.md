@@ -11,6 +11,8 @@ Helper application to test android applications.
 # How to use
 
 1. Git clone this repository, build and install this apk into your target device.
+    - run the apk once
+    - `$ adb shell am start -n com.kazucocoa.droidtesthelper/.MainActivity`
 2. Execute the following command. ( Should replace `your.target.account.type` to fit your application. )
     - `$ adb shell am broadcast -a 'DroidTestHelper' --es ACCOUNT_TYPE your.target.account.type`
 
