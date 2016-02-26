@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DroidTestHelper</string>
+
+    <string name="permission_get_account">Need GET_ACCOUNT permission to clear account data for test.</string>
+    <string name="permission_account_manager">Need ACCOUNT_MANAGER permission to clear account data for test.</string>
+
+    <string name="button_allow">OK</string>
+    <string name="button_deny">Deny</string>
 </resources>
