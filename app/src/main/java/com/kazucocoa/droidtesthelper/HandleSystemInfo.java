@@ -58,13 +58,27 @@ public class HandleSystemInfo {
         return widthPixel + "x" + heightPixel;
     }
 
+    public String getDPI() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        String xdpi = String.valueOf(displayMetrics.xdpi);
+        String ydpi = String.valueOf(displayMetrics.ydpi);
+        return xdpi + "x" + ydpi;
+    }
+
+
     public String getSIMSerialNumber() {
         String simSerial = telephonyManager.getSimSerialNumber();
         return simSerial == null ? "" : simSerial;
     }
 
-    public String getSimPhoneNumber() {
+    public String getSIMPhoneNumber() {
         String simPhoneNumber = telephonyManager.getLine1Number();
         return simPhoneNumber == null ? "" : simPhoneNumber;
+    }
+
+    public String getSIMServiceProvider() {
+        String simOperatorName = telephonyManager.getSimOperatorName();
+        return simOperatorName == null ? "" : simOperatorName;
     }
 }
