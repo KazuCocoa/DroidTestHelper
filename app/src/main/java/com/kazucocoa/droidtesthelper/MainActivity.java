@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
@@ -31,12 +33,25 @@ public class MainActivity extends AppCompatActivity {
         if (Intent.ACTION_MAIN.equals(action) && intent.hasExtra(intentExtraAccountType)) {
             accountType = intent.getStringExtra(intentExtraAccountType);
             removeAccount();
+
+            MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
+
+            showGetAccountAndRemove();
+            finish();
         }
 
-        MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
+        Button registrationButton = (Button) findViewById(R.id.main_registration_button);
+        assert registrationButton != null;
+        registrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToRegistrationActivity();
+            }
+        });
+    }
 
-        showGetAccountAndRemove();
-        finish();
+    private void goToRegistrationActivity() {
+        startActivity(new Intent().setClassName(this, RegistrationActivity.class.getName()));
     }
 
     @NeedsPermission(Manifest.permission.GET_ACCOUNTS)
