@@ -6,6 +6,4 @@
 
     <string name="button_allow">OK</string>
     <string name="button_deny">Deny</string>
-    
-    <string name="go_to_registration_page">端末登録画面を開く</string>
 </resources>
