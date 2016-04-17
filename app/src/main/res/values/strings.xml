@@ -1,5 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">DroidTestHelper</string>
+
+    <string name="about_this_app">DroidHelper help running tests to make them more stable.</string>
+    <string name="how_to_use">
+        DroidHelper remove all account from AccountManager stored with particular accountType via broadcast intent.
+    </string>
+    <string name="example_of_broadcast" tools:ignore="TypographyDashes">
+        $ adb shell am broadcast -a \'DroidTestHelper\' --es ACCOUNT_TYPE your.target.account.type
+    </string>
 
     <string name="permission_get_account">Need GET_ACCOUNT permission to clear account data for test.</string>
     <string name="permission_account_manager">Need ACCOUNT_MANAGER permission to clear account data for test.</string>
