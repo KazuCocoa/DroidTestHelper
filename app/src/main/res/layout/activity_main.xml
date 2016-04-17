@@ -9,8 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.kazucocoa.droidtesthelper.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_this_app"
+            android:id="@+id/text_about_this_app" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_how_to_use"
+            android:text="@string/how_to_use"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_example"
+            android:text="@string/example_of_broadcast"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
 </RelativeLayout>

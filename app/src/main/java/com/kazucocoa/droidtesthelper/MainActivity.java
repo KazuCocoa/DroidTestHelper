@@ -30,13 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (Intent.ACTION_MAIN.equals(action) && intent.hasExtra(intentExtraAccountType)) {
             accountType = intent.getStringExtra(intentExtraAccountType);
-            removeAccount();
+
+            MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
+            showGetAccountAndRemove();
+
+            finish();
         }
 
         MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
-
         showGetAccountAndRemove();
-        finish();
     }
 
     @NeedsPermission(Manifest.permission.GET_ACCOUNTS)
@@ -49,12 +51,6 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.permission_get_account)
                 .setPositiveButton(R.string.button_allow, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton(R.string.button_deny, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         request.proceed();
