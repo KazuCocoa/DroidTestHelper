@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
@@ -15,9 +17,11 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
-    static String intentExtraAccountType = "accountType";
+    public static String intentExtraAccountType = "accountType";
 
     private String accountType = "";
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
         showGetAccountAndRemove();
+
+        setButtons();
+    }
+
+    private void setButtons() {
+        button = (Button) findViewById(R.id.go_to_activity_handle_locale_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HandleLocaleActivity.class));
+            }
+        });
     }
 
     @NeedsPermission(Manifest.permission.GET_ACCOUNTS)
