@@ -27,6 +27,11 @@ Helper application to test android applications.
 - 3. Set `ja_JP`
     - ```$ adb shell am broadcast -a 'DroidTestHelper' --es LANG ja --es COUNTRY JP```
 
+### reference
+- https://developer.android.com/reference/java/util/Locale.html
+- http://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
+
+
 # More featere ?
 
 I will add additional feature if I need.
