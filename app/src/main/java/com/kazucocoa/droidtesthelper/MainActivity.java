@@ -1,11 +1,14 @@
 package com.kazucocoa.droidtesthelper;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
@@ -15,9 +18,18 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
-    static String intentExtraAccountType = "accountType";
+    public static String intentExtraAccountType = "accountType";
+
+    private static String stringExtraViaReceiver = "ACCOUNT_TYPE";
 
     private String accountType = "";
+
+    private Button button;
+
+    public static boolean hasExtraRegardingLocal(Intent intent) {
+        return intent.hasExtra(stringExtraViaReceiver);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
         showGetAccountAndRemove();
+
+        setButtons();
+    }
+
+    private void setButtons() {
+        button = (Button) findViewById(R.id.go_to_activity_handle_locale_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HandleLocaleActivity.class));
+            }
+        });
     }
 
     @NeedsPermission(Manifest.permission.GET_ACCOUNTS)
@@ -63,4 +87,15 @@ public class MainActivity extends AppCompatActivity {
         HandleAccountHelper handleAccountHelper = new HandleAccountHelper(this);
         handleAccountHelper.removeAccount(accountType);
     }
+
+    public static Intent buildLaunchingMainActivityIntent(Context context, Intent intent) {
+        String accountType = intent.getStringExtra(stringExtraViaReceiver);
+
+        Intent returnIntent = new Intent(context, MainActivity.class);
+        returnIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        returnIntent.setAction(Intent.ACTION_MAIN);
+        returnIntent.putExtra(MainActivity.intentExtraAccountType, accountType);
+        return returnIntent;
+    }
+
 }

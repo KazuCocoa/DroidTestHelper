@@ -8,10 +8,18 @@
     <string name="example_of_broadcast" tools:ignore="TypographyDashes">
         $ adb shell am broadcast -a \'DroidTestHelper\' --es ACCOUNT_TYPE your.target.account.type
     </string>
+    <string name="go_to_activity_handle_locale">
+        open handle locale activity
+    </string>
 
     <string name="permission_get_account">Need GET_ACCOUNT permission to clear account data for test.</string>
     <string name="permission_account_manager">Need ACCOUNT_MANAGER permission to clear account data for test.</string>
 
     <string name="button_allow">OK</string>
     <string name="button_deny">Deny</string>
+
+    <string name="description_for_change_locale">
+        $ adb shell pm grant com.kazucocoa.droidtesthelper android.permission.CHANGE_CONFIGURATION
+    </string>
+    <string name="set_for_change_locale">set with …</string>
 </resources>

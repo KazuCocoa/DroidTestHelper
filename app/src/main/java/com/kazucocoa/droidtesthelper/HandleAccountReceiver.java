@@ -8,26 +8,24 @@ public class HandleAccountReceiver extends BroadcastReceiver {
 
     private static final String TAG = HandleAccountReceiver.class.getSimpleName();
 
-    private String accountType;
-
-    private String stringExtraViaReceiver = "ACCOUNT_TYPE";
-
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        accountType = intent.getStringExtra(stringExtraViaReceiver);
-        if (accountType == null) {
-            accountType = "";
+        if (MainActivity.hasExtraRegardingLocal(intent)) {
+            Intent buildLaunchingMainActivityIntent =
+                    MainActivity.buildLaunchingMainActivityIntent(context, intent);
+            launchMainActivity(context, buildLaunchingMainActivityIntent);
+        } else if (HandleLocaleActivity.hasExtraRegardingLocal(intent)) {
+            Intent handleLocalActivityIntent =
+                    HandleLocaleActivity.buildLaunchHandleLocalActivityIntent(context, intent);
+            launchHandleLocalActivity(context, handleLocalActivityIntent);
         }
-
-        launchMainActivity(context);
     }
 
-    public void launchMainActivity(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_MAIN);
-        intent.putExtra(MainActivity.intentExtraAccountType, accountType);
+    public void launchMainActivity(Context context, Intent intent) {
+        context.startActivity(intent);
+    }
+
+    public void launchHandleLocalActivity(Context context, Intent intent) {
         context.startActivity(intent);
     }
 }
