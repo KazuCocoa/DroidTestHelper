@@ -27,9 +27,12 @@ public class HandleAccountReceiverTest {
 
     @Test
     public void buildLaunchingMainActivityIntentTest(){
-        Intent intent =
-                handleAccountReceiver.buildLaunchingMainActivityIntent(context, "my.account.type");
+        Intent intent = new Intent();
+        intent.putExtra("ACCOUNT_TYPE", "my.account.type");
 
-        assertThat(intent.getStringExtra("accountType"), is("my.account.type"));
+        Intent buildLaunchingMainActivityIntent =
+                MainActivity.buildLaunchingMainActivityIntent(context, intent);
+
+        assertThat(buildLaunchingMainActivityIntent.getStringExtra("accountType"), is("my.account.type"));
     }
 }

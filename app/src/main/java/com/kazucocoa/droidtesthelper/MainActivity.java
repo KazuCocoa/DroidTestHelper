@@ -1,6 +1,7 @@
 package com.kazucocoa.droidtesthelper;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static String intentExtraAccountType = "accountType";
 
+    private static String stringExtraViaReceiver = "ACCOUNT_TYPE";
+
     private String accountType = "";
 
     private Button button;
+
+    public static boolean hasExtraRegardingLocal(Intent intent) {
+        return intent.hasExtra(stringExtraViaReceiver);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,4 +87,15 @@ public class MainActivity extends AppCompatActivity {
         HandleAccountHelper handleAccountHelper = new HandleAccountHelper(this);
         handleAccountHelper.removeAccount(accountType);
     }
+
+    public static Intent buildLaunchingMainActivityIntent(Context context, Intent intent) {
+        String accountType = intent.getStringExtra(stringExtraViaReceiver);
+
+        Intent returnIntent = new Intent(context, MainActivity.class);
+        returnIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        returnIntent.setAction(Intent.ACTION_MAIN);
+        returnIntent.putExtra(MainActivity.intentExtraAccountType, accountType);
+        return returnIntent;
+    }
+
 }
