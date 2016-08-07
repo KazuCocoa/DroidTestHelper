@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
@@ -56,46 +57,52 @@ public class HandleLocaleActivity extends AppCompatActivity {
             textView.setText("set with: " + lang + "_" + coun);
 
             Locale locale = new Locale(lang, coun);
-            setLocale(locale);
+            try {
+                setLocale(locale);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             assert textView != null;
             textView.setText("set with: en_US(Default)");
 
             Locale locale = new Locale("en", "US");
-            setLocale(locale);
+            try {
+                setLocale(locale);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void setLocale(Locale locale) {
-        try {
-            Class amnClass = Class.forName("android.app.ActivityManagerNative");
-            Object amn = null;
-            Configuration config = null;
+    // ref: http://stackoverflow.com/questions/2900023/change-language-programmatically-in-android/4683532#4683532
+    private void setLocale(Locale locale) throws
+            ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+        Class amnClass = Class.forName("android.app.ActivityManagerNative");
+        Object amn = null;
+        Configuration config = null;
 
-            // amn = ActivityManagerNative.getDefault();
-            Method methodGetDefault = amnClass.getMethod("getDefault");
-            methodGetDefault.setAccessible(true);
-            amn = methodGetDefault.invoke(amnClass);
+        // amn = ActivityManagerNative.getDefault();
+        Method methodGetDefault = amnClass.getMethod("getDefault");
+        methodGetDefault.setAccessible(true);
+        amn = methodGetDefault.invoke(amnClass);
 
-            // config = amn.getConfiguration();
-            Method methodGetConfiguration = amnClass.getMethod("getConfiguration");
-            methodGetConfiguration.setAccessible(true);
-            config = (Configuration) methodGetConfiguration.invoke(amn);
+        // config = amn.getConfiguration();
+        Method methodGetConfiguration = amnClass.getMethod("getConfiguration");
+        methodGetConfiguration.setAccessible(true);
+        config = (Configuration) methodGetConfiguration.invoke(amn);
 
-            // config.userSetLocale = true;
-            Class configClass = config.getClass();
-            Field f = configClass.getField("userSetLocale");
-            f.setBoolean(config, true);
+        // config.userSetLocale = true;
+        Class configClass = config.getClass();
+        Field f = configClass.getField("userSetLocale");
+        f.setBoolean(config, true);
 
-            // set the locale to the new value
-            config.locale = locale;
+        // set the locale to the new value
+        config.locale = locale;
 
-            // amn.updateConfiguration(config);
-            Method methodUpdateConfiguration = amnClass.getMethod("updateConfiguration", Configuration.class);
-            methodUpdateConfiguration.setAccessible(true);
-            methodUpdateConfiguration.invoke(amn, config);
-        } catch (Exception e) {
-            // error
-        }
+        // amn.updateConfiguration(config);
+        Method methodUpdateConfiguration = amnClass.getMethod("updateConfiguration", Configuration.class);
+        methodUpdateConfiguration.setAccessible(true);
+        methodUpdateConfiguration.invoke(amn, config);
     }
 }
