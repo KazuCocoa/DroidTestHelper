@@ -13,16 +13,16 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class HandleAccountReceiverTest {
+public class HandleBroadcastReceiverTest {
 
     private Context context;
 
-    private HandleBroadcastReceiver handleAccountReceiver;
+    private HandleBroadcastReceiver handleBroadcastReceiver;
 
     @Before
     public void setUp() {
         context = InstrumentationRegistry.getContext();
-        handleAccountReceiver = new HandleBroadcastReceiver();
+        handleBroadcastReceiver = new HandleBroadcastReceiver();
     }
 
     @Test
