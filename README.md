@@ -27,6 +27,17 @@ Helper application to test android applications.
 - 3. Set `ja_JP`
     - ```$ adb shell am broadcast -a 'DroidTestHelper' --es LANG ja --es COUNTRY JP```
 
+## Change animations
+
+- 2. Execute the following command to allow permission.
+    - ```$ adb shell pm grant com.kazucocoa.droidtesthelper android.permission.SET_ANIMATION_SCALE```
+    - ```$ adb shell pm grant com.kazucocoa.droidtesthelper android.permission.WRITE_SECURE_SETTINGS```
+- 3. enable/disable animation scale 1.0f
+    - enable
+        - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION true```
+    - disable
+        - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION false```
+
 ### reference
 - https://developer.android.com/reference/java/util/Locale.html
 - http://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
