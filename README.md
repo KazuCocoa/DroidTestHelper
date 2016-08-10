@@ -44,7 +44,7 @@ So, you can handle some settings via adb broadcast.
     - disable
         - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION false```
 
-# loadmap
+# load map
 
 I will add additional feature if I need.
 
