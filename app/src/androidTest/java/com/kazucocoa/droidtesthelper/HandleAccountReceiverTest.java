@@ -17,12 +17,12 @@ public class HandleAccountReceiverTest {
 
     private Context context;
 
-    private HandleAccountReceiver handleAccountReceiver;
+    private HandleBroadcastReceiver handleAccountReceiver;
 
     @Before
     public void setUp() {
         context = InstrumentationRegistry.getContext();
-        handleAccountReceiver = new HandleAccountReceiver();
+        handleAccountReceiver = new HandleBroadcastReceiver();
     }
 
     @Test

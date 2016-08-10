@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-public class HandleAccountReceiver extends BroadcastReceiver {
+public class HandleBroadcastReceiver extends BroadcastReceiver {
 
-    private static final String TAG = HandleAccountReceiver.class.getSimpleName();
+    private static final String TAG = HandleBroadcastReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -18,6 +18,8 @@ public class HandleAccountReceiver extends BroadcastReceiver {
             Intent handleLocalActivityIntent =
                     HandleLocaleActivity.buildLaunchHandleLocalActivityIntent(context, intent);
             launchHandleLocalActivity(context, handleLocalActivityIntent);
+        } else if (HandleAnimations.hasExtraRegardingAnimation(intent)) {
+            HandleAnimations.enableAnimationsWithIntent(intent);
         }
     }
 
