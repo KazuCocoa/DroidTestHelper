@@ -17,12 +17,9 @@ public class HandleBroadcastReceiverTest {
 
     private Context context;
 
-    private HandleBroadcastReceiver handleBroadcastReceiver;
-
     @Before
     public void setUp() {
         context = InstrumentationRegistry.getContext();
-        handleBroadcastReceiver = new HandleBroadcastReceiver();
     }
 
     @Test
