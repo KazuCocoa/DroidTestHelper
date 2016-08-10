@@ -14,6 +14,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 public class HandleLocaleActivityTest {
+
      private Context context;
 
     @Before

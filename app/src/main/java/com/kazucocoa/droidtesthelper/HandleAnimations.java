@@ -1,6 +1,5 @@
 package com.kazucocoa.droidtesthelper;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
@@ -51,7 +50,6 @@ public class HandleAnimations {
 
             Class<?> windowManagerClazz = Class.forName("android.view.IWindowManager");
 
-            // pre-cache the relevant Method objects using reflection so they're ready to use
             setAnimationScalesMethod = windowManagerClazz.getDeclaredMethod("setAnimationScales", float[].class);
             getAnimationScalesMethod = windowManagerClazz.getDeclaredMethod("getAnimationScales");
 
