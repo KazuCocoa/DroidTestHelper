@@ -1,13 +1,15 @@
 # DroidTestHelper
 
-Helper application to test android applications.
+Helper application to test android applications. This application handle some settings via adb broadcast.
+So, you can handle some settings via adb broadcast.
 
 # Feature
 
-- Remove particuler account from AccountManager via `adb` broadcast.
-    - You can remve application local data via `adb shell am clear your.package.name`.
+- Remove particular account from AccountManager via `adb` broadcast.
+    - You can remove application local data via `adb shell am clear your.package.name`.
     - But if your application support account manager, the command can't remove the data.
 - Change language/country setting via some sdb commands
+- Change animation scale
 
 # How to use
 
@@ -42,7 +44,7 @@ Helper application to test android applications.
     - disable
         - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION false```
 
-# More featere ?
+# loadmap
 
 I will add additional feature if I need.
 
