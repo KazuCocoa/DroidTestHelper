@@ -1,5 +1,7 @@
 # DroidTestHelper
 
+[![Build Status](https://www.bitrise.io/app/6841fdd15c749475.svg?token=q73f-gNh1bFHCjbSgn9h-A&branch=master)](https://www.bitrise.io/app/6841fdd15c749475)
+
 Helper application to test android applications. This application handle some settings via adb broadcast.
 So, you can handle some settings via adb broadcast.
 
