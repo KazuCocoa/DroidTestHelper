@@ -1,0 +1,60 @@
+---
+format_version: 1.2.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+trigger_map:
+- pattern: "*"
+  is_pull_request_allowed: true
+  workflow: primary
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key@3.1.1:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@3.3.3: {}
+    - script@1.1.2:
+        title: Do anything with Script step
+        inputs:
+        - content: |-
+            #!/bin/bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            echo "Hello World!"
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+
+            mkdir "$ANDROID_HOME/licenses" || true
+            echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+            echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+            echo y | android update sdk --no-ui --filter build-tools-24.0.0,android-24,extra-android-m2repository
+    - create-android-emulator@0.9.1:
+        inputs:
+        - name: my_android_device
+    - start-android-emulator@1.0.2:
+        inputs:
+        - other_options: "-avd my_android_device -no-skin -no-audio -no-window -gpu
+            off -no-boot-anim"
+    - gradle-runner@1.3.1:
+        inputs:
+        - gradle_task: connectedAndroidTest
+    - gradle-runner@1.3.1:
+        inputs:
+        - gradle_task: "$GRADLE_TASK"
+    - deploy-to-bitrise-io@1.2.4: {}
+app:
+  envs:
+  - opts:
+      is_expand: false
+    GRADLE_BUILD_FILE_PATH: build.gradle
+  - opts:
+      is_expand: false
+    GRADLE_TASK: assembleDebug
+  - opts:
+      is_expand: false
+    GRADLEW_PATH: "./gradlew"
