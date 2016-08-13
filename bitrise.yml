@@ -2,7 +2,7 @@
 format_version: 1.2.0
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 trigger_map:
-- pattern: "*"
+- pattern: primary
   is_pull_request_allowed: true
   workflow: primary
 workflows:
@@ -20,14 +20,6 @@ workflows:
             set -e
             # debug log
             set -x
-
-            # write your script here
-            echo "Hello World!"
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
 
             mkdir "$ANDROID_HOME/licenses" || true
             echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
