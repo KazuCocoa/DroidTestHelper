@@ -10,7 +10,7 @@ So, you can handle some settings via adb broadcast.
 - Remove particular account from AccountManager via `adb` broadcast.
     - You can remove application local data via `adb shell am clear your.package.name`.
     - But if your application support account manager, the command can't remove the data.
-- Change language/country setting via some sdb commands
+- Change language/country setting via some adb commands
 - Change animation scale
 
 # How to use
