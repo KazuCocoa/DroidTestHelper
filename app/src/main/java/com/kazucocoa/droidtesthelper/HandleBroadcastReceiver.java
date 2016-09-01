@@ -10,15 +10,19 @@ public class HandleBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (MainActivity.hasExtraRegardingLocal(intent)) {
+        if (MainActivity.hasExtraRegardingAccountType(intent)) {
             Intent buildLaunchingMainActivityIntent =
                     MainActivity.buildLaunchingMainActivityIntent(context, intent);
             launchMainActivity(context, buildLaunchingMainActivityIntent);
-        } else if (HandleLocaleActivity.hasExtraRegardingLocal(intent)) {
+        }
+
+        if (HandleLocaleActivity.hasExtraRegardingLocal(intent)) {
             Intent handleLocalActivityIntent =
                     HandleLocaleActivity.buildLaunchHandleLocalActivityIntent(context, intent);
             launchHandleLocalActivity(context, handleLocalActivityIntent);
-        } else if (HandleAnimations.hasExtraRegardingAnimation(intent)) {
+        }
+
+        if (HandleAnimations.hasExtraRegardingAnimation(intent)) {
             HandleAnimations.enableAnimationsWithIntent(intent);
         }
     }
