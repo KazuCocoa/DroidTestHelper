@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
 
-    public static boolean hasExtraRegardingLocal(Intent intent) {
+    public static boolean hasExtraRegardingAccountType(Intent intent) {
         return intent.hasExtra(stringExtraViaReceiver);
     }
 
