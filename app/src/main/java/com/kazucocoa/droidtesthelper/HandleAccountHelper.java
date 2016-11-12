@@ -34,7 +34,7 @@ public class HandleAccountHelper {
 
     public void removeAccount(@NonNull String accountType) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
-            Log.e(TAG, "Don't granted Manifest.permission.GET_ACCOUNTS");
+            Log.e(TAG, "Can't granted Manifest.permission.GET_ACCOUNTS");
             return;
         }
         Account[] accountArray = accountManager.getAccountsByType(accountType);

@@ -17,8 +17,8 @@ public class HandlePermission {
     // https://github.com/android/platform_frameworks_base/blob/android-7.1.0_r7/core/java/android/app/UiAutomation.java#L919
     @TargetApi(Build.VERSION_CODES.M)
     public boolean grantPermission(@NonNull Context context, @NonNull String packageName, @NonNull String permission) {
-        PackageManager packageManager = context.getPackageManager();
         try {
+            PackageManager packageManager = context.getPackageManager();
             Method method = packageManager.getClass().getMethod("grantRuntimePermission", String.class, String.class, UserHandle.class);
             method.invoke(packageManager, packageName, permission, android.os.Process.myUserHandle());
 

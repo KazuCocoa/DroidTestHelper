@@ -106,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
         return returnIntent;
     }
 
+    // TODO: implement https://developer.android.com/guide/components/aidl.html if you'd like to use
+    // this method.
+    private void grantAllPermissions() {
+        grantPermission(this, Manifest.permission.GET_ACCOUNTS);
+        grantPermission(getApplicationContext(), Manifest.permission.CHANGE_CONFIGURATION);
+        grantPermission(getApplicationContext(), Manifest.permission.SET_ANIMATION_SCALE);
+        grantPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS);
+    }
+
     // String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     // mainActivity.grantPermission(this, permission);
     public void grantPermission(@NonNull Context context, @NonNull String permission) {
