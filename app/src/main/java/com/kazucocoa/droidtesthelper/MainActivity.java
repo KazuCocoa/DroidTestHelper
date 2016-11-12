@@ -4,9 +4,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +19,7 @@ import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
+    private static String TAG = MainActivity.class.getSimpleName();
 
     public static String intentExtraAccountType = "accountType";
 
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private String accountType = "";
 
     private Button button;
+
+    private HandlePermission handlePermission;
 
     public static boolean hasExtraRegardingAccountType(Intent intent) {
         return intent.hasExtra(stringExtraViaReceiver);
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        handlePermission = new HandlePermission();
 
         Intent intent = this.getIntent();
 
@@ -98,4 +105,16 @@ public class MainActivity extends AppCompatActivity {
         return returnIntent;
     }
 
+    // String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    // mainActivity.grantPermission(this, permission);
+    public void grantPermission(Context context, String permission) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            Log.i(TAG, "Don't need to grant permission because target apk is under API Level 23");
+            return;
+        }
+
+        if (!handlePermission.grantPermission(context, context.getPackageName(), permission)) {
+            throw new IllegalArgumentException("Failed to grant permission " + permission);
+        }
+    }
 }
