@@ -5,17 +5,18 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.UserHandle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-class HandlePermission {
+public class HandlePermission {
     private static String TAG = HandlePermission.class.getSimpleName();
 
     // https://github.com/android/platform_frameworks_base/blob/android-7.1.0_r7/core/java/android/app/UiAutomation.java#L919
     @TargetApi(Build.VERSION_CODES.M)
-    boolean grantPermission(Context context, String packageName, String permission) {
+    public boolean grantPermission(@NonNull Context context, @NonNull String packageName, @NonNull String permission) {
         PackageManager packageManager = context.getPackageManager();
         try {
             Method method = packageManager.getClass().getMethod("grantRuntimePermission", String.class, String.class, UserHandle.class);
