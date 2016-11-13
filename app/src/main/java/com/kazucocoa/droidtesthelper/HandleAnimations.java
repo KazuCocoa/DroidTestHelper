@@ -2,6 +2,7 @@ package com.kazucocoa.droidtesthelper;
 
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
@@ -24,11 +25,11 @@ public class HandleAnimations {
 
     private Object windowManagerObject;
 
-    public static boolean hasExtraRegardingAnimation(Intent intent) {
+    public static boolean hasExtraRegardingAnimation(@NonNull Intent intent) {
         return intent.hasExtra(animationExtra);
     }
 
-    public static void enableAnimationsWithIntent(Intent intent) {
+    public static void enableAnimationsWithIntent(@NonNull Intent intent) {
         boolean enableAnimation = intent.getBooleanExtra(animationExtra, false);
         HandleAnimations handleAnimations = new HandleAnimations();
         handleAnimations.AnimationHandler();
@@ -40,7 +41,7 @@ public class HandleAnimations {
         }
     }
 
-    public void AnimationHandler() {
+    private void AnimationHandler() {
         try {
             Class<?> windowManagerStubClazz = Class.forName("android.view.IWindowManager$Stub");
             Method asInterface = windowManagerStubClazz.getDeclaredMethod("asInterface", IBinder.class);
@@ -60,7 +61,7 @@ public class HandleAnimations {
         }
     }
 
-    public void disableAnimations() {
+    private void disableAnimations() {
         try {
             setAnimationScaleWith(DISABLE);
         } catch (Exception e) {

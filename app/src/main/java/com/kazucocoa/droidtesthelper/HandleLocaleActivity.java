@@ -3,6 +3,7 @@ package com.kazucocoa.droidtesthelper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,11 +22,11 @@ public class HandleLocaleActivity extends AppCompatActivity {
 
     private static String countryExt = "COUNTRY";
 
-    public static boolean hasExtraRegardingLocal(Intent intent) {
+    public static boolean hasExtraRegardingLocal(@NonNull Intent intent) {
         return intent.hasExtra(languageExt) && intent.hasExtra(countryExt);
     }
 
-    public static Intent buildLaunchHandleLocalActivityIntent(Context context, Intent intent) {
+    public static Intent buildLaunchHandleLocalActivityIntent(@NonNull Context context, @NonNull Intent intent) {
         Intent returnIntent = new Intent(context, HandleLocaleActivity.class);
         returnIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         returnIntent.setAction(Intent.ACTION_VIEW);
@@ -70,7 +71,7 @@ public class HandleLocaleActivity extends AppCompatActivity {
         }
     }
 
-    private void setLocale(Locale locale) {
+    private void setLocale(@NonNull Locale locale) {
         try {
             setLocaleWith(locale);
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class HandleLocaleActivity extends AppCompatActivity {
         }
     }
 
-    private void setLocaleWith(Locale locale) throws
+    private void setLocaleWith(@NonNull Locale locale) throws
             ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
         Object amn = null;

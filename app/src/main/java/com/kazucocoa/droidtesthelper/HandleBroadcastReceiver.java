@@ -3,6 +3,7 @@ package com.kazucocoa.droidtesthelper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 public class HandleBroadcastReceiver extends BroadcastReceiver {
 
@@ -27,11 +28,11 @@ public class HandleBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    public void launchMainActivity(Context context, Intent intent) {
+    public void launchMainActivity(@NonNull Context context, @NonNull Intent intent) {
         context.startActivity(intent);
     }
 
-    public void launchHandleLocalActivity(Context context, Intent intent) {
+    public void launchHandleLocalActivity(@NonNull Context context, @NonNull Intent intent) {
         context.startActivity(intent);
     }
 }

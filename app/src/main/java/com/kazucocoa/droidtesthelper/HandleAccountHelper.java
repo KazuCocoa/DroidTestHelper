@@ -1,5 +1,6 @@
 package com.kazucocoa.droidtesthelper;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -7,9 +8,11 @@ import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,12 +27,16 @@ public class HandleAccountHelper {
 
     private Context context;
 
-    public HandleAccountHelper(Context context) {
+    public HandleAccountHelper(@NonNull Context context) {
         this.context = context;
         this.accountManager = AccountManager.get(context.getApplicationContext());
     }
 
     public void removeAccount(@NonNull String accountType) {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+            Log.e(TAG, "Can't granted Manifest.permission.GET_ACCOUNTS");
+            return;
+        }
         Account[] accountArray = accountManager.getAccountsByType(accountType);
 
         for (final Account account : accountArray) {
@@ -68,7 +75,7 @@ public class HandleAccountHelper {
         }
     }
 
-    private void showToast(String text) {
+    private void showToast(@NonNull String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 }
