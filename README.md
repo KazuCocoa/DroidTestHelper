@@ -5,6 +5,8 @@
 Helper application to test android applications. This application handle some settings via adb broadcast.
 So, you can handle some settings via adb broadcast.
 
+Some features are similar to https://github.com/linkedin/test-butler published by LinkedIn.
+
 # Feature
 
 - Remove particular account from AccountManager via `adb` broadcast.
