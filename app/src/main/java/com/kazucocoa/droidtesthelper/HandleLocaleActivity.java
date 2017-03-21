@@ -82,8 +82,8 @@ public class HandleLocaleActivity extends AppCompatActivity {
     private void setLocaleWith(@NonNull Locale locale) throws
             ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
-        Object amn = null;
-        Configuration config = null;
+        Object amn;
+        Configuration config;
 
         Method methodGetDefault = activityManagerNativeClass.getMethod("getDefault");
         methodGetDefault.setAccessible(true);

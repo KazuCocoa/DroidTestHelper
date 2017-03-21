@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'net.ltgt.errorprone'
+
+repositories {
+    mavenCentral()
+}
 
 android {
     compileSdkVersion 25
@@ -40,4 +45,8 @@ dependencies {
         // To avoid conflict
         androidTestCompile.exclude group: 'com.android.support', module: 'support-annotations'
     }
+}
+
+configurations.errorprone {
+    resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.0.19'
 }
