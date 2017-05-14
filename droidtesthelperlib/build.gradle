@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
 apply plugin: 'net.ltgt.errorprone'
 
 android {
@@ -6,7 +7,6 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.kazucocoa.droidtesthelperlib"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
