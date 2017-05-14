@@ -56,6 +56,13 @@ Some features are similar to https://github.com/linkedin/test-butler published b
 - HandlePermission
 
 ## Embedded DroidTestHelperLib into your library
+### from Jitpack
+- https://jitpack.io/#KazuCocoa/DroidTestHelper
+ ```
+dependencies {
+    compile 'com.github.KazuCocoa:DroidTestHelper:0.1.0'
+}
+```
 
 ### Need Permissions to enable the above handler in AndroidManifest.xml
 
