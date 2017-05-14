@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.kazucocoa.droidtesthelperlib.*;
+
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     public static boolean hasExtraRegardingAccountType(Intent intent) {
         return intent.hasExtra(stringExtraViaReceiver);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

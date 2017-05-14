@@ -1,4 +1,4 @@
-package com.kazucocoa.droidtesthelper;
+package com.kazucocoa.droidtesthelperlib;
 
 import android.Manifest;
 import android.accounts.Account;

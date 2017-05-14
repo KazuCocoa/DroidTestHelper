@@ -2,16 +2,13 @@ package com.kazucocoa.droidtesthelper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import com.kazucocoa.droidtesthelperlib.HandleLocale;
+
 import java.util.Locale;
 
 public class HandleLocaleActivity extends AppCompatActivity {
@@ -50,6 +47,8 @@ public class HandleLocaleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handle_locale);
 
+        HandleLocale handleLocale = new HandleLocale();
+
         Intent intent = this.getIntent();
         TextView textView = (TextView) findViewById(R.id.set_for_change_locale_text);
 
@@ -61,46 +60,13 @@ public class HandleLocaleActivity extends AppCompatActivity {
             textView.setText("set with: " + lang + "_" + coun);
 
             Locale locale = new Locale(lang, coun);
-            setLocale(locale);
+            handleLocale.setLocale(locale);
         } else {
             assert textView != null;
             textView.setText("set with: en_US(Default)");
 
             Locale locale = new Locale("en", "US");
-            setLocale(locale);
+            handleLocale.setLocale(locale);
         }
-    }
-
-    private void setLocale(@NonNull Locale locale) {
-        try {
-            setLocaleWith(locale);
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to set locale", e);
-        }
-    }
-
-    private void setLocaleWith(@NonNull Locale locale) throws
-            ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
-        Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
-        Object amn;
-        Configuration config;
-
-        Method methodGetDefault = activityManagerNativeClass.getMethod("getDefault");
-        methodGetDefault.setAccessible(true);
-        amn = methodGetDefault.invoke(activityManagerNativeClass);
-
-        Method methodGetConfiguration = activityManagerNativeClass.getMethod("getConfiguration");
-        methodGetConfiguration.setAccessible(true);
-        config = (Configuration) methodGetConfiguration.invoke(amn);
-
-        Class<?> configClass = config.getClass();
-        Field f = configClass.getField("userSetLocale");
-        f.setBoolean(config, true);
-
-        config.locale = locale;
-
-        Method methodUpdateConfiguration = activityManagerNativeClass.getMethod("updateConfiguration", Configuration.class);
-        methodUpdateConfiguration.setAccessible(true);
-        methodUpdateConfiguration.invoke(amn, config);
     }
 }

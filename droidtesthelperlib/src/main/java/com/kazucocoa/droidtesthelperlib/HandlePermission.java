@@ -1,4 +1,4 @@
-package com.kazucocoa.droidtesthelper;
+package com.kazucocoa.droidtesthelperlib;
 
 import android.annotation.TargetApi;
 import android.content.Context;

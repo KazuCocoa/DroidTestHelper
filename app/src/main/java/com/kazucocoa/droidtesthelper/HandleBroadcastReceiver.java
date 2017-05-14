@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.kazucocoa.droidtesthelperlib.HandleAnimations;
+
 public class HandleBroadcastReceiver extends BroadcastReceiver {
 
     private static final String TAG = HandleBroadcastReceiver.class.getSimpleName();
