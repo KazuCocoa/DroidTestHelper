@@ -49,6 +49,9 @@ dependencies {
         // To avoid conflict
         androidTestCompile.exclude group: 'com.android.support', module: 'support-annotations'
     }
+
+    debugCompile project(path: ':droidtesthelperlib', configuration: 'debug')
+    releaseCompile project(path: ':droidtesthelperlib', configuration: 'release')
 }
 
 configurations.errorprone {

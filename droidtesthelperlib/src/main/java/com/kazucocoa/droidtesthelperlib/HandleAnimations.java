@@ -1,4 +1,4 @@
-package com.kazucocoa.droidtesthelper;
+package com.kazucocoa.droidtesthelperlib;
 
 import android.content.Intent;
 import android.os.IBinder;
