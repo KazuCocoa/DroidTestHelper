@@ -48,6 +48,36 @@ Some features are similar to https://github.com/linkedin/test-butler published b
     - disable
         - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION false```
 
+# DroidTestHelperLib
+
+- HandleAccountHelper
+- HandleAnimations
+- HandleLocale
+- HandlePermission
+
+## Embedded DroidTestHelperLib into your library
+
+### Need Permissions to enable the above handler in AndroidManifest.xml
+
+```xml
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" android:maxSdkVersion="22"/>
+
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.SET_ANIMATION_SCALE"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+
+    <!-- to grant permission -->
+    <uses-permission android:name="android.permission.GRANT_REVOKE_PERMISSIONS"/>
+
+    <uses-permission
+        android:name="android.permission.MANAGE_ACCOUNTS"
+        android:maxSdkVersion="22" />
+```
+
+### Implementations
+
+A package `com.kazucocoa.droidtesthelper` is example to use `com.kazucocoa.droidtesthelperlib`.
+
 # load map
 
 I will add additional feature if I need.

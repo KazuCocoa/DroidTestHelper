@@ -21,7 +21,7 @@ public class HandleLocale {
         }
     }
 
-    public void setLocaleWith(@NonNull Locale locale) throws
+    private void setLocaleWith(@NonNull Locale locale) throws
             ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
         Object amn;
