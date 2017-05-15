@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+
 apply plugin: 'net.ltgt.errorprone'
+group='com.github.KazuCocoa'
 
 android {
     compileSdkVersion 25
