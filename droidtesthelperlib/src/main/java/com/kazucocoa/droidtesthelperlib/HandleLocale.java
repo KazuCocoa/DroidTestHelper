@@ -1,6 +1,7 @@
 package com.kazucocoa.droidtesthelperlib;
 
 import android.content.res.Configuration;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -30,6 +31,12 @@ public class HandleLocale {
         Method methodGetDefault = activityManagerNativeClass.getMethod("getDefault");
         methodGetDefault.setAccessible(true);
         amn = methodGetDefault.invoke(activityManagerNativeClass);
+
+        // Build.VERSION_CODES.O
+        if (Build.VERSION.SDK_INT >= 26) {
+            // getConfiguration moved from ActivityManagerNative to ActivityManagerProxy
+            activityManagerNativeClass = Class.forName(amn.getClass().getName());
+        }
 
         Method methodGetConfiguration = activityManagerNativeClass.getMethod("getConfiguration");
         methodGetConfiguration.setAccessible(true);
