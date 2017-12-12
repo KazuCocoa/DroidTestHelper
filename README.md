@@ -25,6 +25,9 @@ Some features are similar to https://github.com/linkedin/test-butler published b
 
 - 2. Execute the following command. ( Should replace `your.target.account.type` to fit your application. )
     - `$ adb shell am broadcast -a 'DroidTestHelper' --es ACCOUNT_TYPE your.target.account.type`
+    - Managing account only for API level 22 and lower.
+    - If you clone this repository and build apk with the same signature for your test target apk, you can manage the account without permissions.
+        - https://github.com/KazuCocoa/DroidTestHelper/issues/25#issuecomment-350422302
 
 ## change locale
 
