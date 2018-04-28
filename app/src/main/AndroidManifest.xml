@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
 
+        <!-- For API Level 23- -->
         <receiver android:name=".HandleBroadcastReceiver">
             <intent-filter>
                 <action android:name="DroidTestHelper" />

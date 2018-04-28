@@ -33,5 +33,7 @@ class HandleBroadcastReceiver : BroadcastReceiver() {
     companion object {
 
         private val TAG = HandleBroadcastReceiver::class.java.simpleName
+
+        const val RECEIVER_NAME = "DroidTestHelper"
     }
 }
