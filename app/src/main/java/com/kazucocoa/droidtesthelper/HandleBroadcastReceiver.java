@@ -25,8 +25,8 @@ public class HandleBroadcastReceiver extends BroadcastReceiver {
             launchHandleLocalActivity(context, handleLocalActivityIntent);
         }
 
-        if (HandleAnimations.hasExtraRegardingAnimation(intent)) {
-            HandleAnimations.enableAnimationsWithIntent(intent);
+        if (HandleAnimations.Companion.hasExtraRegardingAnimation(intent)) {
+            HandleAnimations.Companion.enableAnimationsWithIntent(intent);
         }
     }
 
