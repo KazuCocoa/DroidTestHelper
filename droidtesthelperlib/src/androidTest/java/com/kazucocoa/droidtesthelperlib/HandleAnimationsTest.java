@@ -16,13 +16,13 @@ public class HandleAnimationsTest {
         Intent intent = new Intent();
         intent.putExtra("ANIMATION", false);
 
-        assertThat(HandleAnimations.hasExtraRegardingAnimation(intent), is(true));
+        assertThat(HandleAnimations.Companion.hasExtraRegardingAnimation(intent), is(true));
     }
 
     @Test
     public void noHasExtraRegardingAnimationTest(){
         Intent intent = new Intent();
-        assertThat(HandleAnimations.hasExtraRegardingAnimation(intent), is(false));
+        assertThat(HandleAnimations.Companion.hasExtraRegardingAnimation(intent), is(false));
     }
 
 
