@@ -29,7 +29,7 @@ public class HandleLocaleActivityTest {
         intent.putExtra("COUNTRY", "JP");
 
         Intent handleLocalActivityIntent =
-                HandleLocaleActivity.buildLaunchHandleLocalActivityIntent(context, intent);
+                HandleLocaleActivity.Companion.buildLaunchHandleLocalActivityIntent(context, intent);
 
         assertThat(handleLocalActivityIntent.getStringExtra("LANG"), is("ja"));
         assertThat(handleLocalActivityIntent.getStringExtra("COUNTRY"), is("JP"));
@@ -40,7 +40,7 @@ public class HandleLocaleActivityTest {
         Intent intent = new Intent();
 
         Intent handleLocalActivityIntent =
-                HandleLocaleActivity.buildLaunchHandleLocalActivityIntent(context, intent);
+                HandleLocaleActivity.Companion.buildLaunchHandleLocalActivityIntent(context, intent);
 
         assertThat(handleLocalActivityIntent.getStringExtra("LANG"), is("en"));
         assertThat(handleLocalActivityIntent.getStringExtra("COUNTRY"), is("US"));

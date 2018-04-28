@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,16 +50,21 @@ public class MainActivity extends AppCompatActivity {
 
         String action = intent.getAction();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            IntentFilter intentFilter = new IntentFilter(HandleBroadcastReceiver.RECEIVER_NAME);
+            registerReceiver(new HandleBroadcastReceiver(), intentFilter);
+        }
+
         if (Intent.ACTION_MAIN.equals(action) && intent.hasExtra(intentExtraAccountType)) {
             accountType = intent.getStringExtra(intentExtraAccountType);
 
-            MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
+            MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithPermissionCheck(this);
             showGetAccountAndRemove();
 
             finish();
         }
 
-        MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithCheck(this);
+        MainActivityPermissionsDispatcher.showGetAccountAndRemoveWithPermissionCheck(this);
         showGetAccountAndRemove();
 
         setButtons();
