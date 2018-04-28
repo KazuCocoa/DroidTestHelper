@@ -28,7 +28,7 @@ public class HandleBroadcastReceiverTest {
         intent.putExtra("ACCOUNT_TYPE", "my.account.type");
 
         Intent buildLaunchingMainActivityIntent =
-                MainActivity.buildLaunchingMainActivityIntent(context, intent);
+                MainActivity.Companion.buildLaunchingMainActivityIntent(context, intent);
 
         assertThat(buildLaunchingMainActivityIntent.getStringExtra("accountType"), is("my.account.type"));
     }
