@@ -5,16 +5,17 @@ apply plugin: 'net.ltgt.errorprone'
 
 repositories {
     mavenCentral()
+    google()
 }
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.kazucocoa.droidtesthelper"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -38,10 +39,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':droidtesthelperlib')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     implementation 'com.github.hotchemi:permissionsdispatcher:2.2.1'
@@ -54,12 +56,11 @@ dependencies {
 
     configurations {
         // To avoid conflict
-        androidTestCompile.exclude group: 'com.android.support', module: 'support-annotations'
+        androidTestImplementation.exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    implementation project(path: ':droidtesthelperlib')
 }
 
 configurations.errorprone {
-    resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.0.19'
+    resolutionStrategy.force 'com.google.errorprone::2.1.2'
 }

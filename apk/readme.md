@@ -1,0 +1,1 @@
+Build release apk with self-signed keystore.
