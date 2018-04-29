@@ -63,7 +63,7 @@ Some features are similar to https://github.com/linkedin/test-butler published b
 - https://jitpack.io/#KazuCocoa/DroidTestHelper
  ```
 dependencies {
-    compile 'com.github.KazuCocoa:DroidTestHelper:0.1.0'
+    compile 'com.github.KazuCocoa:DroidTestHelper:0.3.0'
 }
 ```
 
