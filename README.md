@@ -14,6 +14,7 @@ Some features are similar to https://github.com/linkedin/test-butler published b
     - But if your application support account manager, the command can't remove the data.
 - Change language/country setting via some adb commands
 - Change animation scale
+- Clear data
 
 # How to use
 
@@ -51,12 +52,18 @@ Some features are similar to https://github.com/linkedin/test-butler published b
     - disable
         - ```$ adb shell am broadcast -a 'DroidTestHelper' --ez ANIMATION false```
 
+## Clear Data
+
+- 2. clear data (Requires API level 21+)
+    - ```$ adb shell am broadcast -a 'DroidTestHelper' --es CLEAR_DATA com.example```
+
 # DroidTestHelperLib
 
 - HandleAccountHelper
 - HandleAnimations
 - HandleLocale
 - HandlePermission
+- HandleClearData
 
 ## Embedded DroidTestHelperLib into your library
 ### from Jitpack
