@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 
 import com.kazucocoa.droidtesthelperlib.HandleAnimations
+import com.kazucocoa.droidtesthelperlib.HandleClearData
 
 class HandleBroadcastReceiver : BroadcastReceiver() {
 
@@ -19,6 +20,10 @@ class HandleBroadcastReceiver : BroadcastReceiver() {
 
         if (HandleAnimations.hasExtraRegardingAnimation(intent)) {
             HandleAnimations.enableAnimationsWithIntent(intent)
+        }
+
+        if (HandleClearData.hasExtraRegardingHandleClearData(intent)) {
+            HandleClearData.clearData(intent)
         }
     }
 
