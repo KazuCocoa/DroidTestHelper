@@ -95,6 +95,23 @@ dependencies {
 
 A package `com.kazucocoa.droidtesthelper` is example to use `com.kazucocoa.droidtesthelperlib`.
 
+# Note for Android P
+- Android P has `Restrictions on non-SDK interfaces` feature.
+    - https://developer.android.com/preview/restrictions-non-sdk-interfaces
+- `java.lang.NoSuchMethodException: setAnimationScales [class [F]` happen when we call `setAnimationScales` in animation handler
+
+- To available the interface, we need below adb commands
+    ```
+    adb shell settings put global hidden_api_policy_pre_p_apps  1
+    adb shell settings put global hidden_api_policy_p_apps 1
+    ```
+- To disable again, we need below adb commands
+    ```
+    adb shell settings delete global hidden_api_policy_pre_p_apps
+    adb shell settings delete global hidden_api_policy_p_apps
+    ```
+
+
 # load map
 
 I will add additional feature if I need.
