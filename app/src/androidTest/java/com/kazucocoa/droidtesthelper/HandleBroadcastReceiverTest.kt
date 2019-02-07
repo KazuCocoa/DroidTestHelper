@@ -2,8 +2,8 @@ package com.kazucocoa.droidtesthelper
 
 import android.content.Context
 import android.content.Intent
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.runner.AndroidJUnit4
 
 import org.junit.Before
 import org.junit.Test
@@ -19,7 +19,7 @@ class HandleBroadcastReceiverTest {
 
     @Before
     fun setUp() {
-        context = InstrumentationRegistry.getContext()
+        context = InstrumentationRegistry.getInstrumentation().context
     }
 
     @Test
