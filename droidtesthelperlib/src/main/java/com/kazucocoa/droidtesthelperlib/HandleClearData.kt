@@ -2,8 +2,8 @@ package com.kazucocoa.droidtesthelperlib
 
 import android.content.Intent
 import android.os.Build
-import android.support.test.InstrumentationRegistry
 import android.util.Log
+import androidx.test.platform.app.InstrumentationRegistry
 
 class HandleClearData {
     companion object {
